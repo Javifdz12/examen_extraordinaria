@@ -101,3 +101,29 @@ def main():
             jugadores[i].append(org_sup[org].superheroes[sup])
             lista_monedas[i]=(lista_monedas[i]-org_sup[org].superheroes[sup].get_coste())
             org_sup[org].superheroes.remove(org_sup[org].superheroes[sup])
+
+    print("\n<<< ELECCION DE MOVIMIENTOS POR PARTE DE CADA JUGADOR >>>\n")
+
+    movs=[]
+    movimiento1=movimiento_general("patada",tipo_movimiento.ataque,random.randint(1,15))
+    movimiento2=movimiento_general("puñetazo",tipo_movimiento.ataque,random.randint(1,10))
+    movimiento3=movimiento_general("escudo",tipo_movimiento.defensa,random.randint(1,12))
+    movimiento4=movimiento_general("escupitajo",tipo_movimiento.defensa,random.randint(1,5))
+    movimiento5=movimiento_general("espadazo",tipo_movimiento.ataque,random.randint(1,20))
+    movs.append(movimiento1)
+    movs.append(movimiento2)
+    movs.append(movimiento3)
+    movs.append(movimiento4)
+    movs.append(movimiento5)
+
+    for i in range(len(jugadores)):
+        for sup in jugadores[i]:
+            movs_sup=[]
+            print(f"Jugador{i+1} elige los movimientos de {sup.alias}\n")
+            while len(movs_sup)<escenario.get_movimientos():
+                for j in range(len(movs)):
+                    print(f'{j}- {movs[j].__str__()}')
+                x=int(input())
+                movs_sup.append(movs[x])
+            else:
+                sup.set_movimientos(movs_sup)
