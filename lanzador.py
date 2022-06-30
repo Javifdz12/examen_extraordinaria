@@ -3,6 +3,7 @@ from clases.movimientos import movimiento_general,tipo_movimiento,movimiento_esp
 from clases.escenarios import Escenario
 from clases.superheroes import superheroe, tipo_superheroe
 from clases.organizaciones import organizacion
+from clases.jugadores import jugador
 
 def main():
 
@@ -127,3 +128,42 @@ def main():
                 movs_sup.append(movs[x])
             else:
                 sup.set_movimientos(movs_sup)
+
+    print("\n<<< AHORA SI... !!!EMPIEZA LO BUENO¡¡¡ >>>\n")
+
+    nombre_jug1=input(f'Jugador1 elija un nombre para su equipo: ')
+    nombre_jug2=input(f'\nJugador2 elija un nombre para su equipo: ')
+    jugador1=jugador(nombre_jug1,jugadores[0])
+    jugador2=jugador(nombre_jug2,jugadores[1])
+
+    print("\n<<< EMPIEZA EL COMBATE >>>\n")
+
+    a=jugador1.elegir_sup()
+    b=jugador2.elegir_sup()
+    while jugador1.equipo!=[] and jugador2.equipo!=[]:
+        s=jugador1.equipo[a].elegir_mov()
+        jugador1.equipo[a].fight_ataque(jugador2.equipo[b],jugador1.equipo[a].movimientos[s])
+        while jugador1.equipo[a].get_energia()>0 and jugador2.equipo[b].get_energia()>0:
+            t=jugador2.equipo[b].elegir_mov()
+            jugador2.equipo[b].fight_ataque(jugador1.equipo[a],jugador2.equipo[b].movimientos[t])
+            if jugador1.equipo[a].get_energia() > 0:
+                s=jugador1.equipo[a].elegir_mov()
+                jugador1.equipo[a].fight_ataque(jugador2.equipo[b],jugador1.equipo[a].movimientos[s])
+        else:
+            if jugador1.equipo[a].get_energia()!=0:
+                print(f"{jugador1.equipo[a].alias} gano la batalla\n")
+                jugador2.equipo.remove(jugador2.equipo[b])
+                if jugador2.equipo!=[]:
+                    b=jugador2.elegir_sup()
+            else:
+                print(f"{jugador2.equipo[b].alias} gano la batalla\n")
+                jugador1.equipo.remove(jugador1.equipo[a])
+                if jugador1.equipo!=[]:
+                    a=jugador1.elegir_sup()
+    else:
+        if jugador1.equipo==[]:
+            print(f"\n{jugador2.nombre} gano la guerra!!!!")
+            print("\n<<< !!!ENHORABUENA¡¡¡ >>>\n")
+        elif jugador2.equipo==[]:
+            print(f"\n{jugador1.nombre.upper()} ganaron la guerra!!!!")
+            print("\n<<< !!!ENHORABUENA¡¡¡ >>>\n")
