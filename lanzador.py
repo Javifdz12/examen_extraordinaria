@@ -162,7 +162,7 @@ def main():
                     a=jugador1.elegir_sup()
     else:
         if jugador1.equipo==[]:
-            print(f"\n{jugador2.nombre} gano la guerra!!!!")
+            print(f"\n{jugador2.nombre} ganaron la guerra!!!!")
             print("\n<<< !!!ENHORABUENA¡¡¡ >>>\n")
         elif jugador2.equipo==[]:
             print(f"\n{jugador1.nombre.upper()} ganaron la guerra!!!!")
