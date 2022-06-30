@@ -68,3 +68,36 @@ def main():
             list_sup.remove(list_sup[x])
         else:
             org_sup.append(org)
+
+    sup_independientes=organizacion("Catalan_academy",list_sup)
+    org_sup.append(sup_independientes)
+    lista_monedas=[escenario.get_monedas(),escenario.get_monedas()]
+    jugador1=[]
+    jugador2=[]
+    jugadores=[jugador1,jugador2]
+
+    print()
+    print("<<< EMPIEZA LA ELECCION DE LOS SUPERHEROES >>>")
+    print()
+
+    for i in range(len(lista_monedas)):
+        while lista_monedas[i]>min(list_costes) and len(jugadores[i])<escenario.num_superheroes:
+            print()
+            print("<<< ESTAS SON LAS ORGANIZACIONES, SUS SUPERHEROES Y SUS CARACTERISTICAS >>>")
+            print()
+            for j in org_sup:
+                print(j.__str__())
+            print()
+            print(f'Todavia dispone de {lista_monedas[i]} monedas')
+            print()
+            for j in range(len(org_sup)):
+                if org_sup[j].superheroes!=[]:
+                    print(f'{j}-{org_sup[j].nombre}\n')
+            org=int(input(f"Jugador{i+1} elija una organización: "))
+            print()
+            for j in range(len(org_sup[org].superheroes)):
+                print(f'{j}- {org_sup[org].superheroes[j].__str__()}')
+            sup=int(input("Elija un superheroe: "))
+            jugadores[i].append(org_sup[org].superheroes[sup])
+            lista_monedas[i]=(lista_monedas[i]-org_sup[org].superheroes[sup].get_coste())
+            org_sup[org].superheroes.remove(org_sup[org].superheroes[sup])
