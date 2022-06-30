@@ -1,4 +1,6 @@
-from enum import Enum as
+from enum import Enum
+from escenarios import Escenario
+import random
 
 class tipo_superheroe(Enum):
     humano=1
@@ -15,7 +17,7 @@ class tipo_superheroe(Enum):
 
 
 
-class superheroe(ser_vivo):
+class superheroe:
     def __init__(self,id,alias,identidad,tipo,esc):
         self.ids=[]
         if type(id)== int and id not in self.ids:
@@ -78,6 +80,12 @@ class superheroe(ser_vivo):
         print(self.get_movimientos())
         x=int(input())
         return x
+
+    def is_alive(self):
+        return self.energia<=0
+
+    def set_energia(self,x):
+        self.energia=x
 
     def __str__(self):
         return f'{self.alias},con id {self.id}, {self.tipo.name}, cuesta {self.coste} monedas, tiene {self.energia} ptos de energía y los siguientes movimientos:\n {self.get_movimientos()}'
