@@ -45,3 +45,26 @@ def main():
     list_costes=[]
     for i in list_sup:
         list_costes.append(i.get_coste())
+
+    #CREAR ORGANIZACIONES
+    r=len(list_sup)
+    l=len(organizaciones)
+    c=r/l
+    #a=26, b=6, c=4.33 por tanto van a sobrar superheroes(en este caso habrá 3 superheroes por organizacion y sobraran 8)
+    org_sup=[]
+    print()
+    print("<<< FORMACION DE LAS ORGANIZACIONES >>>")
+    print()
+    for i in range(len(organizaciones)):
+        nombre=organizaciones[i]
+        org=organizacion(nombre,[])
+        print(f'Elige superheroes para la organizacion: {nombre}')
+        print()
+        while len(org.superheroes)<3:
+            for j in range(len(list_sup)):
+                print(f'{j} - {list_sup[j].__str__()}')
+            x=int(input())
+            org.set_superheroes(list_sup[x])
+            list_sup.remove(list_sup[x])
+        else:
+            org_sup.append(org)
