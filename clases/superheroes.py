@@ -1,5 +1,5 @@
 from enum import Enum
-from escenarios import Escenario
+from clases.escenarios import Escenario
 import random
 
 class tipo_superheroe(Enum):
