@@ -88,4 +88,4 @@ class superheroe:
         self.energia=x
 
     def __str__(self):
-        return f'{self.alias},con id {self.id}, {self.tipo.name}, cuesta {self.coste} monedas, tiene {self.energia} ptos de energía y los siguientes movimientos:\n {self.get_movimientos()}'
+        return f'{self.alias},con id {self.id}, {self.tipo.name}, cuesta {self.coste} monedas, tiene {self.energia} ptos de energía y los siguientes movimientos:\n{self.get_movimientos()}'
